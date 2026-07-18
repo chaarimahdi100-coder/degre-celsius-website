@@ -69,6 +69,14 @@ function QuoteForm() {
     }
   }, [searchParams]);
 
+  const handleServiceChange = (value: string | null) => {
+    setService(value ?? "photovoltaic");
+  };
+
+  const handleMonthlyBillChange = (value: string | null) => {
+    setMonthlyBillSelect(value ?? "");
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -182,7 +190,7 @@ function QuoteForm() {
               
               <div className="space-y-2">
                 <label htmlFor="service" className="text-sm font-medium">Service souhaité *</label>
-                <Select value={service} onValueChange={(val) => setService(val)} name="service" required>
+                <Select value={service} onValueChange={handleServiceChange} name="service" required>
                   <SelectTrigger className="bg-background h-12">
                     <SelectValue placeholder="Sélectionnez un service" />
                   </SelectTrigger>
@@ -198,7 +206,7 @@ function QuoteForm() {
               
               <div className="space-y-2">
                 <label htmlFor="monthlyBill" className="text-sm font-medium">Facture d&apos;électricité mensuelle (Moyenne)</label>
-                <Select value={monthlyBillSelect} onValueChange={(val) => setMonthlyBillSelect(val)} name="monthlyBill">
+                <Select value={monthlyBillSelect} onValueChange={handleMonthlyBillChange} name="monthlyBill">
                   <SelectTrigger className="bg-background h-12">
                     <SelectValue placeholder="Sélectionnez une tranche" />
                   </SelectTrigger>
